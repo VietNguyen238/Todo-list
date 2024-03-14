@@ -48,42 +48,55 @@ export default function CardTodolist({
       <View className='flex-1 flex-col flex justify-between m-2'>
         <View className='flex flex-row justify-between'>
           <View className=''>
-            <Text className='text-lg font-bold'>{title}</Text>
+            <Text className='text-lg font-bold w-[150px]'>{title}</Text>
           </View>
-          <View className=''>
-            {state == true ? (
-              <Text className='bg-green-400 py-1 px-3 text-white rounded-full'>
-                Đã hoàn thành
-              </Text>
+          <View className='flex flex-row justify-center h-[30px]'>
+            {states == true ? (
+              <View className='mr-7 h-[30px]'>
+                <Text className='bg-green-400 py-1 px-3 text-white rounded-full'>
+                  Đã hoàn thành
+                </Text>
+              </View>
             ) : (
-              <Text className='bg-red-400 py-1 px-3 text-white rounded-full'>
-                Chưa hoàn thành
-              </Text>
+              <View className='mr-7 h-[30px]'>
+                <Text className='bg-red-400 py-1 px-3 text-white rounded-full'>
+                  Chưa hoàn thành
+                </Text>
+              </View>
             )}
-          </View>
-          <Menu>
-            <MenuTrigger>
-              <Ionicons name='ellipsis-vertical' size={18} color='black' />
-            </MenuTrigger>
-            <MenuOptions
-              customStyles={{
-                optionsContainer: { borderRadius: 10, padding: 5, width: 100 },
-              }}
-            >
-              <MenuOption
-                onSelect={() => {
-                  setIdTodolist(id);
-                  sheet.current.show();
+
+            <Menu>
+              <MenuTrigger>
+                <Ionicons name='ellipsis-vertical' size={18} color='black' />
+              </MenuTrigger>
+              <MenuOptions
+                customStyles={{
+                  optionsContainer: {
+                    borderRadius: 10,
+                    padding: 5,
+                    width: 100,
+                  },
                 }}
               >
-                <Text>Delete</Text>
-              </MenuOption>
-              <View className='h-[0.5px] w-full bg-slate-600/50' />
-              <MenuOption customStyles={{}}>
-                <Text>Edit</Text>
-              </MenuOption>
-            </MenuOptions>
-          </Menu>
+                <MenuOption
+                  onSelect={() => {
+                    setIdTodolist(id);
+                    sheet.current.show();
+                  }}
+                >
+                  <Text>Delete</Text>
+                </MenuOption>
+                <View className='h-[0.5px] w-full bg-slate-600/50' />
+                <MenuOption
+                  onSelect={() => {
+                    setStates(states == true ? false : true);
+                  }}
+                >
+                  {states == false ? <Text>Done</Text> : <Text>Slacking</Text>}
+                </MenuOption>
+              </MenuOptions>
+            </Menu>
+          </View>
         </View>
       </View>
     </View>

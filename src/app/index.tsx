@@ -17,10 +17,6 @@ import Toast from "react-native-toast-message";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 
-type SheetType = {
-  open: () => void;
-};
-
 export default function Page() {
   const [idTodolist, setIdTodolist] = useState("");
   const sheet = useRef<ActionSheetRef>(null);

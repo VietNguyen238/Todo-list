@@ -2,16 +2,14 @@ import React, { useState } from "react";
 import {
   Button,
   ScrollView,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from "react-native";
+import CheckBox from "react-native-check-box";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { db } from "../../../firebaseConfig";
-import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 import { useForm, Controller } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -27,8 +25,7 @@ export default function Page() {
       reset();
       Toast.show({
         type: "success",
-        text1: "Sửa thành công",
-        text2: "Bạn có thể xem lại ở giỏ hàng 👋",
+        text1: "Thêm thành công",
       });
     },
     mutationFn: (newTodolist) => {
@@ -38,6 +35,8 @@ export default function Page() {
       );
     },
   });
+
+  const state = false;
 
   const {
     control,
@@ -106,44 +105,3 @@ export default function Page() {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "white",
-    padding: 16,
-  },
-  dropdown: {
-    height: 52,
-    backgroundColor: "white",
-    borderColor: "gray",
-    borderWidth: 0.3,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-  icon: {
-    marginRight: 5,
-  },
-  label: {
-    position: "absolute",
-    backgroundColor: "white",
-    left: 22,
-    top: 8,
-    zIndex: 999,
-    paddingHorizontal: 8,
-    fontSize: 14,
-  },
-  placeholderStyle: {
-    fontSize: 16,
-  },
-  selectedTextStyle: {
-    fontSize: 16,
-  },
-  iconStyle: {
-    width: 20,
-    height: 20,
-  },
-  inputSearchStyle: {
-    height: 40,
-    fontSize: 16,
-  },
-});
